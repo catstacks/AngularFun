@@ -11,3 +11,7 @@
     </stream-thread>
   </stream-channel>
 </div>
+
+<ng-template #customMessageTemplate let-message="message">
+  <app-message [message]="message"></app-message>
+</ng-template>

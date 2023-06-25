@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ChatClientService, ChannelService, StreamI18nService } from 'stream-chat-angular';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChatClientService, ChannelService, StreamI18nService, MessageContext, CustomTemplatesService } from 'stream-chat-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+  // Create a reference to your custom template
+  @ViewChild('customMessageTemplate') messageTemplate!: TemplateRef<MessageContext>;
+
   constructor(
     private chatService: ChatClientService,
     private channelService: ChannelService,
     private streamI18nService: StreamI18nService,
+    private customTemplatesService: CustomTemplatesService, // Import the CustomTemplatesService
   ) {
     const apiKey = 'dz5f4d5kzrue';
     const userId = 'wandering-heart-0';
@@ -30,5 +34,10 @@ export class AppComponent implements OnInit {
       type: 'messaging',
       id: {$eq: 'talking-about-angular'},
     });
+  }
+
+  ngAfterViewInit(): void {
+    // Register your template
+    this.customTemplatesService.messageTemplate$.next(this.messageTemplate);
   }
 }
