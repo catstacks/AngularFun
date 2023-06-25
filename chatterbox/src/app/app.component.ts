@@ -1,5 +1,12 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ChatClientService, ChannelService, StreamI18nService, MessageContext, CustomTemplatesService } from 'stream-chat-angular';
+import {
+  ChatClientService,
+  ChannelService,
+  StreamI18nService,
+  MessageContext,
+  CustomTemplatesService,
+  ChannelPreviewContext,
+} from 'stream-chat-angular';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +14,8 @@ import { ChatClientService, ChannelService, StreamI18nService, MessageContext, C
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  // Create a reference to your custom template
   @ViewChild('customMessageTemplate') messageTemplate!: TemplateRef<MessageContext>;
+  @ViewChild('customChannelPreviewTemplate') channelPreviewTemplate!: TemplateRef<ChannelPreviewContext>;
 
   constructor(
     private chatService: ChatClientService,
@@ -37,7 +44,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Register your template
     this.customTemplatesService.messageTemplate$.next(this.messageTemplate);
+    this.customTemplatesService.channelPreviewTemplate$.next(this.channelPreviewTemplate);
   }
 }
