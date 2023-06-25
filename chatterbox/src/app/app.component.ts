@@ -21,13 +21,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     private chatService: ChatClientService,
     private channelService: ChannelService,
     private streamI18nService: StreamI18nService,
-    private customTemplatesService: CustomTemplatesService, // Import the CustomTemplatesService
+    private customTemplatesService: CustomTemplatesService,
   ) {
     const apiKey = 'dz5f4d5kzrue';
     const userId = 'wandering-heart-0';
     const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoid2FuZGVyaW5nLWhlYXJ0LTAiLCJleHAiOjE2ODc3MjQwMzF9.hp-NozJwsJAtyBj8l2OinNwDaLG2J2SaFxIkiMoZa5U';
-    this.chatService.init(apiKey, userId, userToken).then(() =>this.streamI18nService.setTranslation());
-
+    this.chatService.init(apiKey, userId, userToken);
+    this.streamI18nService.setTranslation();
   }
 
   async ngOnInit() {
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.customTemplatesService.messageTemplate$.next(this.messageTemplate);
-    this.customTemplatesService.channelPreviewTemplate$.next(this.channelPreviewTemplate);
+    // this.customTemplatesService.messageTemplate$.next(this.messageTemplate);
+    // this.customTemplatesService.channelPreviewTemplate$.next(this.channelPreviewTemplate);
   }
 }
