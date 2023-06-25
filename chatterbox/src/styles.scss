@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'stream-chat-angular/src/assets/styles/v2/css/index.css';
-
+@import 'stream-chat-angular/src/assets/styles/v2/scss/index.scss';
 
 html {
   height: 100%;
@@ -14,17 +13,20 @@ body {
 #root {
   display: flex;
   height: 100%;
+
+  stream-channel-list {
+    width: 30%;
+  }
+
+  stream-channel {
+    width: 100%;
+  }
+
+  stream-thread {
+    width: 45%;
+  }
 }
 
-stream-channel-list {
-  width: 30%;
-}
 
-stream-channel {
-  width: 100%;
-}
 
-stream-thread {
-  width: 45%;
-}
 
